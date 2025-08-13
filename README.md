@@ -3,8 +3,10 @@
 A Chrome extension that blocks distracting elements on Reddit while preserving navigation:
 - Main feed content (center area)
 - Sidebar communities (left sidebar content)
-- Recent posts (right sidebar content)
-- Keeps navigation elements like Home, Popular, etc.
+- Comments
+- Images
+- Videos
+- Profile Pictures
 
 ## Installation
 
@@ -12,13 +14,6 @@ A Chrome extension that blocks distracting elements on Reddit while preserving n
 2. Enable "Developer mode" in the top right corner
 3. Click "Load unpacked" and select the folder containing this extension
 4. Navigate to Reddit and see the clean, distraction-free interface
-
-## What Gets Blocked
-
-- **Main Feed Content**: Individual posts in the central feed (navigation remains)
-- **Left Sidebar Content**: Community lists and subreddit recommendations
-- **Right Sidebar Content**: Trending posts and recent activity
-- **Preserves Navigation**: Top navigation bar and ability to view individual posts
 
 ## How It Works
 

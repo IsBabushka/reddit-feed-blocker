@@ -1,4 +1,4 @@
-# Reddit Feed Blocker Chrome Extension
+# Reddit Feed Blocker
 
 A Chrome extension that blocks distracting elements on Reddit while preserving navigation:
 - Main feed content (center area)

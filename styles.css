@@ -1,0 +1,23 @@
+/* Main Reddit feed in the center */
+shreddit-feed,
+shreddit-post {
+  display: none !important;
+}
+
+/* Sidebar communities - left sidebar content only */
+[data-testid="subreddit-sidebar"],
+[data-testid="community-list"] {
+  display: none !important;
+}
+
+/* Right sidebar with recent posts content only */
+[data-testid="trending-posts"] {
+  display: none !important;
+}
+
+/* Individual posts in feed */
+article[data-ks-item],
+div[data-testid="post-container"],
+div[data-test-id="post-content"] {
+  display: none !important;
+}

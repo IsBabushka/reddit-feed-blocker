@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Reddit Feed Blocker",
+  "version": "1.0",
+  "description": "Blocks Reddit feed elements to reduce distraction",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Reddit Blocker Settings"
+  },
+  "icons": {
+    "16": "img/reddit_feed_blocker.png",
+    "48": "img/reddit_feed_blocker.png",
+    "128": "img/reddit_feed_blocker.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.reddit.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}

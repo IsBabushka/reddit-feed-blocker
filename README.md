@@ -7,6 +7,7 @@ A Chrome extension that blocks distracting elements on Reddit while preserving n
 - Images
 - Videos
 - Profile Pictures
+- Community Pictures
 
 ## Installation
 

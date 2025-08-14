@@ -7,7 +7,8 @@ const defaultSettings = {
   blockComments: true,
   blockVideos: true,
   blockImages: true,
-  blockProfilePictures: true
+  blockProfilePictures: true,
+  blockCommunityPictures: true
 };
 
 // Current settings
@@ -29,7 +30,9 @@ function updateElements() {
 
   // Selectors for sidebar communities (using the specific elements you identified)
   const sidebarSelectors = [
-    'faceplate-expandable-section-helper[rpl=""]',
+    'faceplate-auto-height-animator',
+    'div[id="RECENT"]',
+    'div[faceplate-auto-height-animator-content][id="RECENT"]',
     'reddit-recent-pages'
   ];
 
@@ -60,9 +63,12 @@ function updateElements() {
 
   // Selectors for profile pictures
   const profilePictureSelectors = [
-    'img[alt="User Avatar"]',
-    '[class*="profile"][class*="icon"]',
-    '[class*="avatar"]',
+    'faceplate-tracker[noun="comment_author_avatar"]'
+  ];
+
+  // Selectors for community pictures (derived from the provided span element)
+  const communityPictureSelectors = [
+    'img[class*="shreddit-subreddit-icon__icon"]',
     'img[alt*="icon"]'
   ];
 
@@ -185,6 +191,25 @@ function updateElements() {
       });
     });
   }
+
+  // Apply settings for community pictures
+  if (currentSettings.blockCommunityPictures) {
+    communityPictureSelectors.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(element => {
+        element.style.display = 'none';
+        element.style.visibility = 'hidden';
+      });
+    });
+  } else {
+    communityPictureSelectors.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(element => {
+        element.style.display = '';
+        element.style.visibility = '';
+      });
+    });
+  }
 }
 
 // Load settings from storage
@@ -235,10 +260,31 @@ const interval = setInterval(() => {
 const observer = new MutationObserver(() => {
   updateElements();
 });
-observer.observe(document.body, {
-  childList: true,
-  subtree: true
-});
+
+// Wait for document body to be available before observing
+if (document.body) {
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+} else {
+  // If body isn't available yet, wait for it
+  const bodyObserver = new MutationObserver(() => {
+    if (document.body) {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+      bodyObserver.disconnect(); // Stop observing once we've set up the main observer
+    }
+  });
+  
+  // Start observing the document for changes to see when body is added
+  bodyObserver.observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+}
 
 // Continue observing for a longer period to handle SPA navigation
 setTimeout(() => {

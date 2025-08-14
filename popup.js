@@ -5,7 +5,8 @@ const defaultSettings = {
   blockComments: true,
   blockVideos: true,
   blockImages: true,
-  blockProfilePictures: true
+  blockProfilePictures: true,
+  blockCommunityPictures: true
 };
 
 // Show status message
@@ -29,6 +30,7 @@ function loadSettings() {
     document.getElementById('videosToggle').checked = items.blockVideos;
     document.getElementById('imagesToggle').checked = items.blockImages;
     document.getElementById('profilePicturesToggle').checked = items.blockProfilePictures;
+    document.getElementById('communityPicturesToggle').checked = items.blockCommunityPictures;
   });
 }
 
@@ -40,7 +42,8 @@ function saveSettings() {
     blockComments: document.getElementById('commentsToggle').checked,
     blockVideos: document.getElementById('videosToggle').checked,
     blockImages: document.getElementById('imagesToggle').checked,
-    blockProfilePictures: document.getElementById('profilePicturesToggle').checked
+    blockProfilePictures: document.getElementById('profilePicturesToggle').checked,
+    blockCommunityPictures: document.getElementById('communityPicturesToggle').checked
   };
   
   chrome.storage.sync.set(settings, function() {
